@@ -125,7 +125,7 @@ foreach ($members as $member) {
     }
     echo '</ul>';
 
-    echo '</div>'; // profile-info
+    echo '</div>'; 
 
     // Social links
     echo '<div class="profile-social">';
