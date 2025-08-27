@@ -1,4 +1,4 @@
-/* Global Reset */
+
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +16,7 @@ body {
   color: #3b2f2f;
 }
 
-/* Navbar */
+
 .navbar {
   position: sticky;
   top: 0;
@@ -100,7 +100,7 @@ body {
   box-shadow: 0 0 6px 2px rgba(193,154,107,0.3);
 }
 
-/* Start Page */
+
 .start-page {
   height: 100vh;
   display: flex;
@@ -137,7 +137,7 @@ body {
   to { width: 100%; }
 }
 
-/* Profile Section */
+
 .profile-section {
   max-width: 900px;
   margin: auto;
@@ -218,7 +218,7 @@ body {
   min-width: 250px;
 }
 
-/* Unified text style for Personality, Favorites, Hobbies, and messages */
+
 .profile-info h1 {
   font-size: 1.9rem;
   margin-bottom: 12px;
@@ -304,7 +304,7 @@ body {
   background: linear-gradient(145deg, #b8895a, #e9d8c4);
 }
 
-/* Back to Top Button */
+
 #backToTop {
   position: fixed;
   bottom: 30px;
@@ -336,7 +336,7 @@ body {
   50% { transform: translateY(-8px); }
 }
 
-/* Fade-in Animation */
+
 .fade-in {
   opacity: 0;
   transform: translateY(25px);
@@ -348,7 +348,7 @@ body {
   transform: translateY(0);
 }
 
-/* Badges */
+
 .badge {
   display: inline-block;
   padding: 4px 10px;
@@ -362,7 +362,7 @@ body {
 .badge.introvert { background-color: #6f4e37; }
 .badge.extrovert { background-color: #b8895a; }
 
-/* Footer */
+
 footer {
   text-align: center;
   padding: 25px;
@@ -370,7 +370,7 @@ footer {
   color: #3b2f2f;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .start-title { font-size: 2.2rem; }
   .profile-card { flex-direction: column; align-items: center; padding: 28px; }
@@ -378,3 +378,4 @@ footer {
   .profile-info { text-align: center; }
   .nav-links { flex-direction: column; gap: 10px; text-align: center; justify-content: center; }
 }
+
