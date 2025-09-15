@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Criphingels Team Profiles</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Theano+Didot&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criphingels Team Profiles</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Theano+Didot&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="navbar">
   <div class="nav-container">
-    <a href="#home" class="logo">Criphingels</a>
+    <a href="?member=all" class="logo">Criphingels</a>
     <ul class="nav-links">
       <li><a href="?member=inna" class="<?php echo ($selectedMember=='inna') ? 'active' : ''; ?>">SERRANO</a></li>
       <li><a href="?member=phoebe" class="<?php echo ($selectedMember=='phoebe') ? 'active' : ''; ?>">PONTIÑOZA</a></li>
@@ -25,7 +25,9 @@
 
 <!-- Feedback Form -->
 <div class="feedback-form-container">
-  <form action="feedback.php" method="POST" class="feedback-form">
+  <?php if ($feedbackSuccess) { echo "<p class='feedback-success'>Thank you! Your feedback has been sent.</p>"; } ?>
+  <?php if (!empty($feedbackError)) { echo "<p class='feedback-error'>$feedbackError</p>"; } ?>
+  <form method="POST" class="feedback-form">
     <h2>Send Your Feedback</h2>
     <label for="name">Name</label>
     <input type="text" id="name" name="name" required>
@@ -48,7 +50,6 @@
     </div>
   </section>
 
-  <!-- PHP-generated profiles -->
   <?php
   foreach ($members as $member) {
       if ($selectedMember && $selectedMember !== $member['id']) continue;
