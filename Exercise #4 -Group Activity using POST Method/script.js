@@ -1,48 +1,63 @@
-// Feedback Form Toggle
+// Show/Hide Feedback Form
 const feedbackButton = document.querySelector('.feedback-button');
 const feedbackFormContainer = document.querySelector('.feedback-form-container');
 
-feedbackButton.addEventListener('click', () => {
+feedbackButton.addEventListener('click', function() {
   feedbackFormContainer.classList.toggle('visible');
 });
 
-// Close feedback form when clicking outside
-document.addEventListener('click', (e) => {
-  if (!feedbackFormContainer.contains(e.target) && !feedbackButton.contains(e.target)) {
-    feedbackFormContainer.classList.remove('visible');
-  }
+
+const heartMenus = document.querySelectorAll('.heart-menu');
+
+heartMenus.forEach(menu => {
+  menu.addEventListener('click', function(e) {
+    e.stopPropagation(); 
+    heartMenus.forEach(m => {
+      if (m !== menu) m.classList.remove('open');
+    });
+    menu.classList.toggle('open');
+  });
 });
 
 
-const backToTopBtn = document.getElementById('backToTop');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    backToTopBtn.style.display = 'block';
-  } else {
-    backToTopBtn.style.display = 'none';
-  }
+document.addEventListener('click', function() {
+  heartMenus.forEach(menu => menu.classList.remove('open'));
 });
 
-backToTopBtn.addEventListener('click', () => {
+
+const backToTop = document.getElementById('backToTop');
+
+backToTop.addEventListener('click', function() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 
-const heartMenu = document.querySelector('.heart-menu');
-heartMenu.addEventListener('click', () => {
-  heartMenu.classList.toggle('open');
-});
-
-// Fade-in Animation on Scroll
 const faders = document.querySelectorAll('.fade-in');
-const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
 
-const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+const appearOptions = {
+  threshold: 0.2,
+  rootMargin: "0px 0px -50px 0px"
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
     entry.target.classList.add('visible');
-    observer.unobserve(entry.target);
+    appearOnScroll.unobserve(entry.target);
   });
 }, appearOptions);
 
-faders.forEach(fader => { appearOnScroll.observe(fader); });
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
+});
+
+
+const logo = document.querySelector('.logo');
+const profileSections = document.querySelectorAll('.profile-section');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+logo.addEventListener('click', function(e) {
+  e.preventDefault();
+  profileSections.forEach(section => section.style.display = 'block');
+  navLinks.forEach(link => link.classList.remove('active'));
+});
