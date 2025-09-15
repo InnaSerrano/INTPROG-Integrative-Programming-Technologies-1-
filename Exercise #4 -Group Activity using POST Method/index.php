@@ -1,6 +1,6 @@
 <?php
-//  POST METHOD:
 $feedbackSuccess = false;
+$feedbackError = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = htmlspecialchars(trim($_POST['name']));
     $email = htmlspecialchars(trim($_POST['email']));
@@ -16,23 +16,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// GET Method: selected member
 $selectedMember = isset($_GET['member']) ? $_GET['member'] : '';
 
-// Criphingels members informations:
 $members = [
     [
         "id" => "inna",
         "fullName" => "Inna Amor Serrano",
         "personality" => "Ambivert",
-        "favorites" => [
-            "Food" => "Sinigang",
-            "Animal" => "Pomeranian Dog",
-            "Movie/Series" => "Sherlock Holmes",
-            "KDrama" => "The Smile Has Left Your Eyes",
-            "KPop" => "GFRIEND",
-            "Jpop" => "ADO, YAOSABI"
-        ],
+        "favorites" => ["Food" => "Sinigang", "Animal" => "Pomeranian Dog", "Movie/Series" => "Sherlock Holmes", "KDrama" => "The Smile Has Left Your Eyes", "KPop" => "GFRIEND", "Jpop" => "ADO, YAOSABI"],
         "hobbies" => ["Reading Wattpad, manga, webtoons, physical books","Listening to Classical Music","Playing Badminton"],
         "img" => "INNA.jpg",
         "social" => ["facebook"=>"https://www.facebook.com/innaserrano02","instagram"=>"https://www.instagram.com/amorin_na/?hl=en","github"=>"https://github.com/innaserrano02"],
@@ -81,18 +72,17 @@ $members = [
 
 <header class="navbar">
   <div class="nav-container">
-    <a href="#home" class="logo">Criphingels</a>
+    <a href="#" class="logo">Criphingels</a>
     <ul class="nav-links">
       <li><a href="?member=inna" class="<?php echo ($selectedMember=='inna') ? 'active' : ''; ?>">SERRANO</a></li>
       <li><a href="?member=phoebe" class="<?php echo ($selectedMember=='phoebe') ? 'active' : ''; ?>">PONTIÑOZA</a></li>
       <li><a href="?member=crisel" class="<?php echo ($selectedMember=='crisel') ? 'active' : ''; ?>">FRANCISCO</a></li>
       <li><a href="?member=resare" class="<?php echo ($selectedMember=='resare') ? 'active' : ''; ?>">RESARE</a></li>
     </ul>
-    <button class="feedback-button"><i class="fa-solid fa-comment"></i> Feedback</button>
+    <button class="feedback-button"><i class="fa-regular fa-comment"></i> Feedback</button>
   </div>
 </header>
 
-<!-- Feedback Form -->
 <div class="feedback-form-container">
   <?php if ($feedbackSuccess) { echo "<p class='feedback-success'>Thank you! Your feedback has been sent.</p>"; } ?>
   <?php if (!empty($feedbackError)) { echo "<p class='feedback-error'>$feedbackError</p>"; } ?>
@@ -168,6 +158,10 @@ $members = [
 <footer class="fade-in">
   <p>© 2025 Criphingels</p>
 </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
 
 <script src="script.js"></script>
 </body>
