@@ -3,50 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XMLHttpRequest Lab</title>
+  <title>SERRANO_INNA AMOR__Lab1_XMLHttpRequest</title>
   <style>
     body {
-      font-family: Montserrat;
-      margin: 40px;
-    }
-    #output {
-      margin-top: 20px;
-      padding: 15px;
-      border: 1px solid #5C4033;
-      background-color: #f9f9f9;
+      font-family: Arial;
+      background-color: #f8f3ee;
+      padding: 30px;
     }
     button {
+      background-color: #c19a6b;
+      color: white;
+      border: none;
       padding: 10px 15px;
-      font-size: 16px;
       cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #a77b52;
+    }
+    #output {
+      margin-top: 15px;
+      padding: 10px;
+      background: white;
+      border: 1px solid #d1bfa3;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
+
   <h2>Exploring XMLHttpRequest</h2>
-  <button id="loadData">Load Post Data</button>
+  <button id="loadBtn">Load Post Data</button>
   <div id="output"></div>
 
   <script>
-    document.getElementById("loadData").addEventListener("click", function() {
-      const xhr = new XMLHttpRequest();
+    document.getElementById("loadBtn").addEventListener("click", function() {
+      let xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
 
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-          const output = document.getElementById("output");
-          if (xhr.status === 200) {
-            const data = JSON.parse(xhr.responseText);
-            output.innerHTML =
-              "<strong>Post Title:</strong> " + data.title + "<br><br>" +
-              "<strong>Content:</strong> " + data.body;
-          } else {
-            output.innerHTML =
-              "<span style='color:red;'>Error: " + xhr.status + " - " + xhr.statusText + "</span>";
-          }
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          let post = JSON.parse(xhr.responseText);
+          document.getElementById("output").innerHTML = 
+            "<b>Post Title:</b> " + post.title + "<br><br>" +
+            "<b>Content:</b> " + post.body;
+        } else {
+          document.getElementById("output").innerHTML = "Error loading post.";
         }
       };
 
-      xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
       xhr.send();
     });
   </script>
