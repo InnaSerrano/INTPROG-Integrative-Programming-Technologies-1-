@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exploring Fetch API</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    h2 {
+      color: #4B3E2B;
+    }
+    button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+      background-color: #c9a77b;
+      color: white;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #b98a5a;
+    }
+    #output {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #c9a77b;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Exploring the Fetch API</h2>
+
+  <button id="loadData">Load Post (GET)</button>
+  <button id="createPost">Create Post (POST)</button>
+  <div id="output"></div>
+
+  <script>
+    const output = document.getElementById("output");
+
+    // GET Request
+    document.getElementById("loadData").addEventListener("click", () => {
+      output.innerHTML = "Loading post...";
+      fetch("https://jsonplaceholder.typicode.com/posts/1")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response error: " + response.status);
+          }
+          return response.json();
+        })
+        .then(data => {
+          output.innerHTML = `
+            <strong>Post Title:</strong> ${data.title}<br><br>
+            <strong>Content:</strong> ${data.body}
+          `;
+        })
+        .catch(error => {
+          output.innerHTML = `<span style="color:red;">Error: ${error.message}</span>`;
+        });
+    });
+
+    // POST Request
+    document.getElementById("createPost").addEventListener("click", () => {
+      output.innerHTML = "Creating post...";
+      fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: "Criphingels Team Project",
+          body: "This post was made while learning the Fetch API in our web development lab.",
+          userId: 2
+        })
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response error: " + response.status);
+          }
+          return response.json();
+        })
+        .then(data => {
+          output.innerHTML = `
+            <strong>New Post Created!</strong><br>
+            Post ID: ${data.id}<br>
+            Title: ${data.title}<br>
+            Content: ${data.body}
+          `;
+        })
+        .catch(error => {
+          output.innerHTML = `<span style="color:red;">Error: ${error.message}</span>`;
+        });
+    });
+  </script>
+</body>
+</html>
