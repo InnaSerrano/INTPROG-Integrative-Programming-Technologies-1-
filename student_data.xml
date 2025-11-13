@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+  <student>
+    <id>23151248</id>
+    <name>INNA AMOR SERRANO</name>
+    <course>BSIT</course>
+    <year>3</year>
+    <section>J</section>
+  </student>
+  <student>
+    <id>23151305</id>
+    <name>MJ Jeck Bungcahan</name>
+    <course>BSIT</course>
+    <year>3</year>
+    <section>A</section>
+  </student>
+</students>
